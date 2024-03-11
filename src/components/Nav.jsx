@@ -28,13 +28,17 @@ function Nav() {
     auth.signOut();
   };
 
+  const cart = () => {
+    navigate("./cart");
+  };
+
   return (
     <nav>
       <Link to="/">
         <h1>Shop</h1>
       </Link>
       <div className="nav-right">
-        <button className="cart-button"></button>
+        <button className="cart-button" onClick={cart}></button>
         <button className="user-button"></button>
         {isLoggedIn ? (
           <button className="logout-button" onClick={signOut}></button>

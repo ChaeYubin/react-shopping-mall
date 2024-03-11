@@ -1,0 +1,127 @@
+.cart-page-container {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.empty-cart-page {
+  padding-top: 70px;
+  text-align: center;
+}
+
+.empty-cart-page img {
+  width: 200px;
+  height: 200px;
+}
+
+.empty-cart-page > h2 {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.empty-cart-page > p {
+  padding-bottom: 20px;
+}
+
+.empty-cart-page > span {
+  text-decoration: underline;
+}
+
+.cart-product > img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.cart-product {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgb(194, 194, 194);
+}
+
+.cart-product > .cart-product-desc {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}
+
+.cart-product-category {
+  color: rgb(154, 157, 173);
+  font-weight: bold;
+  font-size: 0.8rem;
+  padding-bottom: 8px;
+}
+
+.cart-product-title {
+  font-weight: bold;
+  font-size: 0.95rem;
+  padding-bottom: 8px;
+}
+
+.product-count {
+  display: flex;
+  gap: 6px;
+}
+
+.product-count-decrease-button,
+.product-count-value,
+.product-count-increase-button {
+  padding: 5px 10px;
+  border: 1.5px solid rgb(214, 214, 214);
+  background-color: transparent;
+}
+
+.product-count-decrease-button,
+.product-count-increase-button {
+  cursor: pointer;
+}
+
+.cart-product-remove {
+  margin-left: auto;
+}
+
+.cart-page-container > h2 {
+  margin-top: 30px;
+}
+
+.cart-product-remove-button {
+  border: none;
+  background-color: transparent;
+  background-image: url("./../../assets/delete-button.png");
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.cart-footer {
+  display: flex;
+  width: 80%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.cart-footer > .total {
+  background-color: rgb(240, 234, 223);
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.cart-footer > button {
+  width: 100px;
+  background: transparent;
+  padding: 10px;
+  border: 1px solid rgb(114, 116, 128);
+  cursor: pointer;
+}
