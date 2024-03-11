@@ -5,7 +5,7 @@
   justify-content: center;
 }
 
-.product-container p {
+.product-container > p {
   margin-top: 20px;
   justify-self: first;
   font-weight: bold;
@@ -81,6 +81,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   width: 150px;
+  color: rgb(40, 40, 40);
 }
 
 .product .footer {
@@ -88,6 +89,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 30px;
 }
 
@@ -107,6 +109,7 @@
   cursor: pointer;
 }
 
-.footer p {
+.footer > p {
   font-weight: bold;
+  color: rgb(40, 40, 40);
 }
