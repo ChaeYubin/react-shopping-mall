@@ -1,10 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { selectCategory } from "../../redux/product";
+import { getProducts } from "../../redux/product";
 import instance from "../../api/axios";
 
 function Category({ index, category }) {
   const dispatch = useDispatch();
+
   const categoryEng = [
     "",
     "electronics",
@@ -16,12 +17,21 @@ function Category({ index, category }) {
   const url =
     index === 0 ? "products" : `products/category/${categoryEng[index]}`;
 
-  const handleCategoryClick = () => {
+  const handleCategoryClick = (e) => {
+    // 선택한 카테고리에만 selected 클래스 추가
+    e.target.parentNode.childNodes.forEach((node) => {
+      if (node === e.target) {
+        node.classList.add("selected");
+      } else {
+        node.classList.remove("selected");
+      }
+    });
+
     instance
       .get(url)
       .then((result) => result.data)
       .then((products) =>
-        dispatch(selectCategory({ category: index, products: products }))
+        dispatch(getProducts({ category: index, products: products }))
       );
   };
 

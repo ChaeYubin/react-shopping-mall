@@ -64,7 +64,7 @@
 }
 
 .product:hover {
-  transform: scale(1.03);
+  transform: translateY(-5px);
 }
 
 .product img {

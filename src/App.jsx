@@ -26,7 +26,6 @@ function App() {
     <div className="App">
       <Nav />
       <Outlet />
-      {isLoggedIn ? <p>{userName}님 안녕하세요.</p> : null}
     </div>
   );
 }
