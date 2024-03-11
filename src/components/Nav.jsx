@@ -34,12 +34,12 @@ function Nav() {
         <h1>Shop</h1>
       </Link>
       <div className="nav-right">
-        <button>cart</button>
-        <button>user</button>
+        <button className="cart-button"></button>
+        <button className="user-button"></button>
         {isLoggedIn ? (
-          <button onClick={signOut}>logout</button>
+          <button className="logout-button" onClick={signOut}></button>
         ) : (
-          <button onClick={signIn}>login</button>
+          <button className="login-button" onClick={signIn}></button>
         )}
       </div>
     </nav>

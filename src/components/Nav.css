@@ -14,3 +14,30 @@ nav {
   margin-left: auto;
   gap: 10px;
 }
+
+.nav-right > button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+}
+
+.nav-right .logout-button {
+  background-image: url("./../assets/nav-logout.png");
+}
+
+.nav-right .login-button {
+  background-image: url("./../assets/nav-login.png");
+}
+
+.nav-right .cart-button {
+  background-image: url("./../assets/nav-cart.png");
+}
+
+.nav-right .user-button {
+  background-image: url("./../assets/nav-user.png");
+}
