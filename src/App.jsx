@@ -1,33 +1,23 @@
 import "./App.css";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-} from "firebase/auth";
 import { useEffect, useState } from "react";
 import Nav from "./components/Nav";
 import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
 
-  const auth = getAuth();
-  // auth.setPersistence("session"); // 탭이 열려있는 동안에만 사용자를 기억한다.
+  const auth = useSelector((state) => state.auth);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // 로그인된 상태일 경우
-        setIsLoggedIn(true);
-        setUserName(user.email);
-      } else {
-        // 로그아웃된 상태일 경우
-        setIsLoggedIn(false);
-      }
-    });
-  }, []);
+    if (auth.auth) {
+      setIsLoggedIn(true);
+      setUserName(auth.userEmail);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [auth]);
 
   return (
     <div className="App">

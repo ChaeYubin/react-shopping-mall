@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SignUpPage() {
   const [email, setEmail] = useState("");
@@ -34,9 +34,16 @@ function SignUpPage() {
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         alert("회원가입이 완료되었습니다.");
-        navigate("/");
+        navigate("/login");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.code === "auth/email-already-in-use") {
+          alert("이미 가입된 이메일입니다.");
+        } else if (err.code === "auth/invalid-email") {
+          alert("이메일 주소를 올바르게 입력하세요.");
+          setEmail("");
+        }
+      });
   };
 
   return (

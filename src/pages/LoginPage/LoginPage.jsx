@@ -1,18 +1,17 @@
 import React from "react";
 import { useState } from "react";
 import "./LoginPage.css";
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-} from "firebase/auth";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "./../../redux/auth";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const auth = getAuth();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onEmailChange = (e) => {
     setEmail(e.target.value);
@@ -25,7 +24,10 @@ function LoginPage() {
   const logIn = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
-      .then(() => navigate("/"))
+      .then(() => {
+        dispatch(login(email));
+        navigate("/");
+      })
       .catch((err) => {
         alert("로그인 정보가 올바르지 않습니다.");
         setEmail("");
@@ -43,12 +45,14 @@ function LoginPage() {
             value={email}
             onChange={onEmailChange}
             autoComplete="off"
+            placeholder="이메일을 입력하세요."
           />
           <input
             type="password"
             value={password}
             onChange={onPasswordChange}
             autoComplete="off"
+            placeholder="비밀번호를 입력하세요."
           />
           <button type="submit" onClick={logIn}>
             로그인
