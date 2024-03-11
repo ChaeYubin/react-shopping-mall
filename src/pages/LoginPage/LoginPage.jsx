@@ -4,7 +4,7 @@ import "./LoginPage.css";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login } from "./../../redux/auth";
+import { login } from "../../redux/auth";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
