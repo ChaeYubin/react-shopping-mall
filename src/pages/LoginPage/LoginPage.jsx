@@ -3,16 +3,12 @@ import { useState } from "react";
 import "./LoginPage.css";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { login } from "../../redux/auth";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const auth = getAuth();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   const onEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -25,7 +21,6 @@ function LoginPage() {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        dispatch(login(email));
         navigate("/");
       })
       .catch((err) => {

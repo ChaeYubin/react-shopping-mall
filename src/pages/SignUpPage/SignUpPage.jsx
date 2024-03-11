@@ -6,6 +6,7 @@ function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
+
   const auth = getAuth();
   const navigate = useNavigate();
 
@@ -34,6 +35,7 @@ function SignUpPage() {
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         alert("회원가입이 완료되었습니다.");
+        auth.signOut();
         navigate("/login");
       })
       .catch((err) => {

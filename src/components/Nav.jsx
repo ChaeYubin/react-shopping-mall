@@ -1,31 +1,31 @@
 import React, { useEffect, useState } from "react";
 import "./Nav.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../redux/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function Nav() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const auth = useSelector((state) => state.auth);
+  const auth = getAuth();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (auth.auth) {
-      // 로그인된 상태일 경우
-      setIsLoggedIn(true);
-    } else {
-      // 로그아웃된 상태일 경우
-      setIsLoggedIn(false);
-    }
-  }, [auth]);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // 로그인된 상태일 경우
+        setIsLoggedIn(true);
+      } else {
+        // 로그아웃된 상태일 경우
+        setIsLoggedIn(false);
+      }
+    });
+  }, []);
 
   const signIn = () => {
     navigate("./login");
   };
 
   const signOut = () => {
-    dispatch(logout());
+    auth.signOut();
   };
 
   return (
