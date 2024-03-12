@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { getProducts } from "../../redux/product";
+import { getProducts } from "../../store/productSlice";
 import instance from "../../api/axios";
 
 function Category({ index, category }) {

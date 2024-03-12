@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./ProductPage.css";
 import CategoryList from "./CategoryList";
 import { useSelector } from "react-redux";
 import ProductList from "./ProductList";
 import { useDispatch } from "react-redux";
 import instance from "../../api/axios";
-import { getProducts } from "../../redux/product";
+import { getProducts } from "../../store/productSlice";
 
 function ProductPage() {
   const dispatch = useDispatch();

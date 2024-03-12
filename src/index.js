@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import { Provider } from "react-redux";
-import store from "./redux/store.js";
+import store from "./store/index.js";
 import ProductPage from "./pages/ProductPage/ProductPage.jsx";
 import CartPage from "./pages/CartPage/CartPage.jsx";
 
