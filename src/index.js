@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import store from "./store/index.js";
 import ProductPage from "./pages/ProductPage/ProductPage.jsx";
 import CartPage from "./pages/CartPage/CartPage.jsx";
+import ProductDetailPage from "./pages/ProductDetailPage/ProductDetailPage.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,6 +23,7 @@ root.render(
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignUpPage />} />
           <Route path="cart" element={<CartPage />} />
+          <Route path=":productId" element={<ProductDetailPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

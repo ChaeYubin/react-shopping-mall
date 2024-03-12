@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { selectCategory } from "../store/productSlice";
+import { clear } from "../store/cartSlice";
+import { clearAll } from "../store/productSlice";
 
 function Nav({ isLoggedIn }) {
   const auth = getAuth();
@@ -16,6 +18,8 @@ function Nav({ isLoggedIn }) {
 
   const signOut = () => {
     auth.signOut();
+    dispatch(clear());
+    dispatch(clearAll());
   };
 
   const cart = () => {

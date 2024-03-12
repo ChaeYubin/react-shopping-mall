@@ -3,9 +3,11 @@ import { useDispatch } from "react-redux";
 import { add, remove } from "../../store/cartSlice";
 import { getAuth } from "firebase/auth";
 import { addToCart, removeFromCart } from "../../store/productSlice";
+import { useNavigate } from "react-router-dom";
 
 function Product({ id, title, price, image, category, description, wish }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleCartAddClick = () => {
     const auth = getAuth();
@@ -37,8 +39,24 @@ function Product({ id, title, price, image, category, description, wish }) {
     dispatch(removeFromCart({ id: id }));
   };
 
+  const handleProductClick = (e) => {
+    if (e.target.tagName !== "BUTTON") {
+      navigate(`/${id}`, {
+        state: {
+          id: id,
+          title: title,
+          price: price,
+          image: image,
+          category: category,
+          description: description,
+          wish: wish,
+        },
+      });
+    }
+  };
+
   return (
-    <div className="product">
+    <div className="product" onClick={handleProductClick}>
       <img src={image} alt="" />
       <p className="product-title">{title}</p>
       <div className="footer">
