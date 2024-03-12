@@ -1,6 +1,24 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { increaseCount, decreaseCount, remove } from "../../store/cartSlice";
+import { removeFromCart } from "../../store/productSlice";
 
 function CartProduct({ product }) {
+  const dispatch = useDispatch();
+
+  const handleIncreaseButton = () => {
+    dispatch(increaseCount({ id: product.id }));
+  };
+
+  const handleDecreaseButton = () => {
+    dispatch(decreaseCount({ id: product.id }));
+  };
+
+  const handleRemoveButton = () => {
+    dispatch(removeFromCart({ id: product.id }));
+    dispatch(remove({ id: product.id }));
+  };
+
   return (
     <div className="cart-product">
       <img src={product.image} alt="" />
@@ -12,12 +30,36 @@ function CartProduct({ product }) {
         </p>
       </div>
       <div className="product-count">
-        <button className="product-count-decrease-button">-</button>
+        {product.count > 1 ? (
+          <button
+            className="product-count-decrease-button"
+            onClick={handleDecreaseButton}
+          >
+            -
+          </button>
+        ) : (
+          <button
+            className="product-count-decrease-button disabled"
+            onClick={handleDecreaseButton}
+            disabled
+          >
+            -
+          </button>
+        )}
+
         <p className="product-count-value">{product.count}</p>
-        <button className="product-count-increase-button">+</button>
+        <button
+          className="product-count-increase-button"
+          onClick={handleIncreaseButton}
+        >
+          +
+        </button>
       </div>
       <div className="cart-product-remove">
-        <button className="cart-product-remove-button"></button>
+        <button
+          className="cart-product-remove-button"
+          onClick={handleRemoveButton}
+        ></button>
       </div>
     </div>
   );

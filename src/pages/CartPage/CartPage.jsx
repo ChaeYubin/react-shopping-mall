@@ -3,11 +3,21 @@ import { useSelector, useDispatch } from "react-redux";
 import CartProductList from "./CartProductList";
 import emptyCart from "./../../assets/cart.png";
 import "./CartPage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { clear } from "../../store/cartSlice";
+import { removeFromCart } from "../../store/productSlice";
 
 function CartPage() {
   const products = useSelector((state) => state.cart.products);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handlePaymentButtonClick = () => {
+    products.forEach((product) => dispatch(removeFromCart({ id: product.id })));
+    dispatch(clear());
+    navigate("/");
+  };
 
   return (
     <>
@@ -17,7 +27,7 @@ function CartPage() {
           <CartProductList products={products} />
           <div className="cart-footer">
             <div className="total">합계: $ {totalPrice}</div>
-            <button>계산하기</button>
+            <button onClick={handlePaymentButtonClick}>계산하기</button>
           </div>
         </div>
       ) : (

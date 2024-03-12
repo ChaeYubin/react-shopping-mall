@@ -32,11 +32,13 @@ export const cartSlice = createSlice({
     },
     clear: (state) => {
       state.products = [];
+      state.totalPrice = 0;
     },
     increaseCount: (state, action) => {
       state.products = state.products.map((product) => {
-        if (product.id === action.payload) {
-          return product.count++;
+        if (product.id === action.payload.id) {
+          product.count++;
+          return product;
         }
         return product;
       });
@@ -47,8 +49,9 @@ export const cartSlice = createSlice({
     },
     decreaseCount: (state, action) => {
       state.products = state.products.map((product) => {
-        if (product.id === action.payload) {
-          return product.count--;
+        if (product.id === action.payload.id) {
+          product.count--;
+          return product;
         }
         return product;
       });
