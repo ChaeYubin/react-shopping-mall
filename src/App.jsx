@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import instance from "./api/axios";
 import { setAllProducts } from "./store/productSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

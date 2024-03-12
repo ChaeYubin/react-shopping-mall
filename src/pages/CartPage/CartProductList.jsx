@@ -1,9 +1,9 @@
 import React from "react";
 import CartProduct from "./CartProduct";
 
-function CartProductList({ products }) {
+function CartProductList({ products, type }) {
   return products.map((product) => (
-    <CartProduct key={product.id} product={product} />
+    <CartProduct key={product.id} product={product} type={type} />
   ));
 }
 

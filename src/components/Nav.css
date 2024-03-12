@@ -7,6 +7,10 @@ nav {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 3px 6px, rgba(0, 0, 0, 0.1) 0px 3px 6px;
 }
 
+.shop-title {
+  font-size: 2rem;
+}
+
 .nav-right {
   display: flex;
   flex-direction: row;
@@ -22,8 +26,8 @@ nav {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
 }
 
 .nav-right .logout-button {
@@ -40,4 +44,23 @@ nav {
 
 .nav-right .user-button {
   background-image: url("./../assets/nav-user.png");
+}
+
+.cart-item-count {
+  transform: translate(43px, -10px);
+  display: flex;
+  width: 15px;
+  height: 15px;
+  background-color: rgb(151, 124, 72);
+  justify-content: center;
+  align-items: center;
+  border-radius: 180px;
+}
+
+.cart-item-count > p {
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
 }

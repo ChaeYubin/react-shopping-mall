@@ -16,7 +16,7 @@ export const cartSlice = createSlice({
       state.products.push(product);
 
       state.totalPrice = state.products.reduce(
-        (total, product) => total + product.price * product.count,
+        (total, product) => Math.floor(total + product.price * product.count),
         0
       );
     },
@@ -26,7 +26,7 @@ export const cartSlice = createSlice({
       );
 
       state.totalPrice = state.products.reduce(
-        (total, product) => total + product.price * product.count,
+        (total, product) => Math.floor(total + product.price * product.count),
         0
       );
     },
@@ -43,7 +43,7 @@ export const cartSlice = createSlice({
         return product;
       });
       state.totalPrice = state.products.reduce(
-        (total, product) => total + product.price * product.count,
+        (total, product) => Math.floor(total + product.price * product.count),
         0
       );
     },
@@ -56,7 +56,7 @@ export const cartSlice = createSlice({
         return product;
       });
       state.totalPrice = state.products.reduce(
-        (total, product) => total + product.price * product.count,
+        (total, product) => Math.floor(total + product.price * product.count),
         0
       );
     },

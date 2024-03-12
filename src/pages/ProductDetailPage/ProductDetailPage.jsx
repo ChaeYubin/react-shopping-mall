@@ -5,6 +5,7 @@ import { getAuth } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { add, remove } from "../../store/cartSlice";
 import { addToCart, removeFromCart } from "../../store/productSlice";
+import { open, close } from "../../store/modalSlice";
 
 function ProductDetailPage() {
   const { state } = useLocation();
@@ -32,6 +33,12 @@ function ProductDetailPage() {
       dispatch(addToCart({ id: state.id }));
 
       setWish("true");
+
+      dispatch(open());
+
+      setTimeout(() => {
+        dispatch(close());
+      }, 3000);
     } else {
       alert("로그인이 필요한 기능입니다.");
     }

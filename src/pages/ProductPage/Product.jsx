@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { add, remove } from "../../store/cartSlice";
+import { open, close } from "../../store/modalSlice";
 import { getAuth } from "firebase/auth";
 import { addToCart, removeFromCart } from "../../store/productSlice";
 import { useNavigate } from "react-router-dom";
@@ -25,6 +26,12 @@ function Product({ id, title, price, image, category, description, wish }) {
         })
       );
       dispatch(addToCart({ id: id }));
+
+      dispatch(open());
+
+      setTimeout(() => {
+        dispatch(close());
+      }, 3000);
     } else {
       alert("로그인이 필요한 기능입니다.");
     }
