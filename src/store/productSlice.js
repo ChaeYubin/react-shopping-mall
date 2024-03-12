@@ -8,11 +8,18 @@ export const productSlice = createSlice({
   name: "product",
   initialState: initialState,
   reducers: {
-    getProducts(state, action) {
-      state.products = action.payload.products;
+    setAllProducts(state, action) {
+      const products = action.payload.products.map((product) => {
+        return {
+          ...product,
+          wish: false,
+        };
+      });
+
+      state.products = products;
     },
   },
 });
 
-export const { getProducts } = productSlice.actions;
+export const { setAllProducts } = productSlice.actions;
 export default productSlice.reducer;

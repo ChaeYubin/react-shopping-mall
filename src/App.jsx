@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 import Nav from "./components/Nav";
 import { Outlet } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import instance from "./api/axios";
+import { setAllProducts } from "./store/productSlice";
+import { useDispatch } from "react-redux";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
   const auth = getAuth();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -20,6 +24,11 @@ function App() {
         setIsLoggedIn(false);
       }
     });
+
+    instance
+      .get("products")
+      .then((result) => result.data)
+      .then((products) => dispatch(setAllProducts({ products: products })));
   }, []);
 
   return (
