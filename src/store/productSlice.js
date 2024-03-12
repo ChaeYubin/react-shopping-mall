@@ -16,7 +16,7 @@ export const productSlice = createSlice({
           wish: false,
         };
       });
-
+      state.selectedCategory = "all";
       state.products = products;
     },
     addToCart(state, action) {
@@ -50,18 +50,9 @@ export const productSlice = createSlice({
     selectCategory(state, action) {
       state.selectedCategory = action.payload.category;
     },
-    clearAll(state) {
-      state.selectedCategory = "all";
-      state.products = [];
-    },
   },
 });
 
-export const {
-  setAllProducts,
-  addToCart,
-  removeFromCart,
-  selectCategory,
-  clearAll,
-} = productSlice.actions;
+export const { setAllProducts, addToCart, removeFromCart, selectCategory } =
+  productSlice.actions;
 export default productSlice.reducer;

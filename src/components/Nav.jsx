@@ -5,8 +5,8 @@ import { getAuth } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategory, setAllProducts } from "../store/productSlice";
 import { clear } from "../store/cartSlice";
-import { clearAll } from "../store/productSlice";
 import CartModal from "./CartModal";
+import instance from "../api/axios";
 
 function Nav({ isLoggedIn }) {
   const auth = getAuth();
@@ -16,14 +16,18 @@ function Nav({ isLoggedIn }) {
   const isModalOpen = useSelector((state) => state.modal.open);
 
   const signIn = () => {
+    dispatch(selectCategory({ category: "all" }));
     navigate("./login");
   };
 
   const signOut = () => {
     auth.signOut();
-    dispatch(clear());
-    dispatch(clearAll());
-    dispatch(setAllProducts());
+    dispatch(clear()); // 장바구니 비우기
+
+    instance
+      .get("products")
+      .then((result) => result.data)
+      .then((products) => dispatch(setAllProducts({ products: products })));
   };
 
   const goToCart = () => {
