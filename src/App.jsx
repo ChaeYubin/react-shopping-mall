@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState("");
   const auth = getAuth();
   const dispatch = useDispatch();
 
@@ -18,7 +17,6 @@ function App() {
       if (user) {
         // 로그인된 상태일 경우
         setIsLoggedIn(true);
-        setUserName(user.email);
       } else {
         // 로그아웃된 상태일 경우
         setIsLoggedIn(false);
@@ -33,7 +31,7 @@ function App() {
 
   return (
     <div className="App">
-      <Nav />
+      <Nav isLoggedIn={isLoggedIn} />
       <Outlet />
     </div>
   );

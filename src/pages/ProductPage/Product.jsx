@@ -1,21 +1,40 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { add } from "../../store/cartSlice";
+import { add, remove } from "../../store/cartSlice";
+import { getAuth } from "firebase/auth";
+import { addToCart, removeFromCart } from "../../store/productSlice";
 
-function Product({ id, title, price, image, category, description }) {
+function Product({ id, title, price, image, category, description, wish }) {
   const dispatch = useDispatch();
 
-  const handleCartClick = () => {
+  const handleCartAddClick = () => {
+    const auth = getAuth();
+
+    // 현재 로그인되어있다면
+    if (auth.currentUser) {
+      dispatch(
+        add({
+          id: id,
+          title: title,
+          price: price,
+          image: image,
+          category: category,
+          description: description,
+        })
+      );
+      dispatch(addToCart({ id: id }));
+    } else {
+      alert("로그인이 필요한 기능입니다.");
+    }
+  };
+
+  const handleCartRemoveClick = () => {
     dispatch(
-      add({
+      remove({
         id: id,
-        title: title,
-        price: price,
-        image: image,
-        category: category,
-        description: description,
       })
     );
+    dispatch(removeFromCart({ id: id }));
   };
 
   return (
@@ -23,7 +42,13 @@ function Product({ id, title, price, image, category, description }) {
       <img src={image} alt="" />
       <p className="product-title">{title}</p>
       <div className="footer">
-        <button onClick={handleCartClick}>장바구니에 담기</button>
+        {wish === "true" ? (
+          <button className="cart" onClick={handleCartRemoveClick}>
+            장바구니에 담긴 제품
+          </button>
+        ) : (
+          <button onClick={handleCartAddClick}>장바구니에 담기</button>
+        )}
         <p>$ {price}</p>
       </div>
     </div>

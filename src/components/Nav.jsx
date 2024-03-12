@@ -1,24 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Nav.css";
 import { Link, useNavigate } from "react-router-dom";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
-function Nav() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+function Nav({ isLoggedIn }) {
   const auth = getAuth();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // 로그인된 상태일 경우
-        setIsLoggedIn(true);
-      } else {
-        // 로그아웃된 상태일 경우
-        setIsLoggedIn(false);
-      }
-    });
-  }, []);
 
   const signIn = () => {
     navigate("./login");

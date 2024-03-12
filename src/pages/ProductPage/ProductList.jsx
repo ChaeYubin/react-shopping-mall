@@ -16,6 +16,7 @@ function ProductList({ products }) {
               price={product.price}
               category={product.category}
               description={product.description}
+              wish={product.wish.toString()}
             />
           );
         })}
